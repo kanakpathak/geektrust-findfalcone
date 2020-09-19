@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  background-color: cadetblue;
+  border: 1px solid cadetblue;
+  z-index: 1000;
+  position: sticky;
+  flex-wrap: wrap;
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.navHeading {
+  flex: 1;
+  text-align: center;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}

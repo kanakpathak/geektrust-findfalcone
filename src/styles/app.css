@@ -1,0 +1,9 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.component {
+  margin: 10px 10px 25px 10px;
+}

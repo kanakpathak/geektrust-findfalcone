@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  background-color: #fa6121;
+  border: 1px solid #fa6121;
+  z-index: 1000;
+  /* position: sticky; */
+  flex-wrap: wrap;
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
