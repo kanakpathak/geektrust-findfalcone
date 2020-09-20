@@ -6,6 +6,8 @@ import Arena from "./components/game/arena";
 import Result from "./components/game/result";
 import { FETCH_ACCESS_TOKEN } from "./constants/config";
 import "./styles/app.css";
+import { PlanetsProvider } from "./context/planetsContext";
+import { VehiclesProvider } from "./context/vehiclesContext";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -22,16 +24,20 @@ const App = () => {
   return (
     <div className="app">
       <Router>
-        <div>
+        <>
           <Header />
-        </div>
-        <div className="component">
-          <Route exact path="/" component={Arena} />
-          <Route path="/result" component={Result} />
-        </div>
-        <div>
+        </>
+        <PlanetsProvider>
+          <VehiclesProvider>
+            <div className="component">
+              <Route exact path="/" component={Arena} />
+              <Route path="/result" component={Result} />
+            </div>
+          </VehiclesProvider>
+        </PlanetsProvider>
+        <>
           <Footer />
-        </div>
+        </>
       </Router>
     </div>
   );

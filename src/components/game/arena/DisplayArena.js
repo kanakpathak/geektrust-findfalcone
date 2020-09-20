@@ -1,50 +1,106 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Destination from "./Destination";
 import "../../../styles/arena.css";
-import PropTypes from "prop-types";
-// import Destination from "./Destination";
-import DropDown from "../../../utils/dropDown";
-import RadioButton from "../../../utils/radioButton";
+import { PlanetsContext } from "../../../context/planetsContext";
+import { DropDownContext } from "../../../context/dropDownContext";
 
-const DisplayArena = ({ planets, vehicles }) => {
-  const arr = new Array(4).fill("combobox");
+const DisplayArena = () => {
+  const { planets } = useContext(PlanetsContext);
+  const { dropDown, setDropDown } = useContext(DropDownContext);
+  const [desArray, setDesArray] = useState([]);
+
+  const setDropDownOptions = () => {
+    const arr = [];
+    planets.map((planet, index) => {
+      return arr.push({
+        value: planet.name,
+        label: planet.name,
+        isDisabled: false,
+        index
+      });
+    });
+    setDropDown([...arr]);
+  };
+
+  useEffect(() => {
+    setDropDownOptions();
+  }, [planets]);
+
+  const setDestinationArray = () => {
+    const arr = [];
+    new Array(4).fill("destination").map(() => {
+      return arr.push({
+        options: -1,
+        vehicles: -1
+      });
+    });
+    setDesArray([...arr]);
+  };
+
+  useEffect(() => {
+    setDestinationArray();
+  }, []);
+
+  // console.log("dropDown", dropDown);
+  // console.log("desArray", desArray);
+
+  const onSelected = (event, index) => {
+    // 1. toggle previous option
+    // 2. set new option
+    // 3. change state
+    console.log("event", event);
+    // updating options Array with isDisabled toggle
+    const oldOption = desArray[index].options;
+
+    // setting newly selected value option as disabled
+    const newOptions = JSON.parse(JSON.stringify(dropDown));
+    newOptions[event.index].isDisabled = true;
+
+    /* if oldOption !== -1, then other previous value is there, 
+       which now need to be enabled */
+    if (oldOption !== -1) {
+      console.log("inside if");
+      newOptions[oldOption].isDisabled = false;
+    }
+
+    setDropDown([...newOptions]);
+
+    // updating desArray with new optionIndex
+    const dest = JSON.parse(JSON.stringify(desArray));
+    dest[index].options = event.index;
+    setDesArray([...dest]);
+  };
 
   return (
     <div className="arenaContainer">
-      <div>
+      <>
         <h3>Select planets you want to search in:</h3>
-      </div>
+      </>
       <div className="destination">
         <div className="destinationContainer">
-          {arr.map((item, index) => {
+          {desArray.map((item, index) => {
             return (
               // eslint-disable-next-line react/no-array-index-key
-              <div className="destinationCards" key={item + index}>
+              <div className="destinationCards" key={index}>
                 <p>
                   Destination
                   {index + 1}
                 </p>
-                {/* <Destination /> */}
-                <DropDown data={planets} />
-                <RadioButton data={vehicles} />
+                <Destination onSelected={event => onSelected(event, index)} />
               </div>
             );
           })}
         </div>
-        <div>
+        <>
           <h3>Time Taken: 0</h3>
-        </div>
+        </>
       </div>
-      <div>
+      <>
         <Link to="/result"> Find Falcone!</Link>
-      </div>
+      </>
     </div>
   );
-};
-
-DisplayArena.propTypes = {
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  vehicles: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default DisplayArena;
