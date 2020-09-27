@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 const RadioButton = ({ data }) => {
   const [selected, setSelected] = useState("");
 
-  const onValueChange = event => {
-    console.log("event occurig", event.target);
+  const onValueChange = index => {
+    console.log("data.index.total_no", data[index].total_no);
+    console.log("event occuring", event.target);
     setSelected(event.target.value);
   };
   return (
@@ -19,7 +20,7 @@ const RadioButton = ({ data }) => {
                 type="radio"
                 value={item.name}
                 checked={selected === item.name}
-                onChange={onValueChange}
+                onChange={() => onValueChange(index)}
               />
             </div>
             <div>

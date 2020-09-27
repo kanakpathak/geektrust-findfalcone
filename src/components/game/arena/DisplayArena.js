@@ -9,6 +9,8 @@ const DisplayArena = () => {
   const { planets } = useContext(PlanetsContext);
   const { dropDown, setDropDown } = useContext(DropDownContext);
   const [desArray, setDesArray] = useState([]);
+  const desCardlength = 4;
+  const [computedTime, setComputedTime] = useState(0);
 
   const setDropDownOptions = () => {
     const arr = [];
@@ -29,7 +31,7 @@ const DisplayArena = () => {
 
   const setDestinationArray = () => {
     const arr = [];
-    new Array(4).fill("destination").map(() => {
+    new Array(desCardlength).fill("destination").map(() => {
       return arr.push({
         options: -1,
         vehicles: -1
@@ -41,9 +43,6 @@ const DisplayArena = () => {
   useEffect(() => {
     setDestinationArray();
   }, []);
-
-  // console.log("dropDown", dropDown);
-  // console.log("desArray", desArray);
 
   const onSelected = (event, index) => {
     // 1. toggle previous option
@@ -87,13 +86,16 @@ const DisplayArena = () => {
                   Destination
                   {index + 1}
                 </p>
-                <Destination onSelected={event => onSelected(event, index)} />
+                <Destination
+                  onSelected={event => onSelected(event, index)}
+                  des={desArray[index]}
+                />
               </div>
             );
           })}
         </div>
         <>
-          <h3>Time Taken: 0</h3>
+          <h3>Time Taken: {computedTime}</h3>
         </>
       </div>
       <>
