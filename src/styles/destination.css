@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.destination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.destinationCard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  margin: 10px;
+}
+
+.radioButton {
+  display: flex;
+  padding: 2px;
+}
+.disableButton {
+  color: grey;
+}

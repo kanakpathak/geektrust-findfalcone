@@ -1,0 +1,27 @@
+.homeContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  margin: 30px 10px;
+  font-family: "Comic Sans MS", sans-serif;
+  text-align: center;
+  line-height: 20px;
+  font-size: 20px;
+  flex: 1;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  text-decoration: none;
+  align-self: center;
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+  background-color: gainsboro;
+  text-decoration: none;
+  color: darkgray;
+}

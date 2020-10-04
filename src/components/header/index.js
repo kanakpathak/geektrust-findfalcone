@@ -9,11 +9,11 @@ const Header = () => {
         <h1>Finding Falcone!</h1>
       </div>
       <div className="navLinks">
-        <div>
-          <Link to='/'>Reset</Link>
-        </div>
-        <div>|</div>
-        <div>Geek Trust Home</div>
+        <>
+          <Link to="/">Reset</Link>
+        </>
+        <> | </>
+        <>Geek Trust Home</>
       </div>
     </div>
   );

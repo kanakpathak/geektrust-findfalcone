@@ -1,34 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+import { PlanetsContext } from "../context/planetsContext";
+import "../styles/destination.css";
 
-const RadioButton = ({ data }) => {
-  const [selected, setSelected] = useState("");
+const RadioButton = ({ options, onSelected, desCard }) => {
+  const [value, setValue] = useState("");
+  const { planets } = useContext(PlanetsContext);
+  const { planetIndex, vehicleIndex } = desCard;
 
-  const onValueChange = index => {
-    console.log("data.index.total_no", data[index].total_no);
-    console.log("event occuring", event.target);
-    setSelected(event.target.value);
+  const onValueChange = (event, index) => {
+    setValue(event.target.value);
+    onSelected(index);
   };
+
+  useEffect(() => {
+    if (vehicleIndex === -1) setValue("");
+  }, [desCard]);
+
   return (
     <div>
-      {data.map((item, index) => {
+      {options.map((item, index) => {
+        const isDisabled =
+          item.max_distance < planets[planetIndex].distance ||
+          item.total_no < 1;
         return (
-          // eslint-disable-next-line react/no-array-index-key
-          <div key={item + index} style={{ display: "flex", padding: "2px" }}>
-            <div>
-              <input
-                type="radio"
-                value={item.name}
-                checked={selected === item.name}
-                onChange={() => onValueChange(index)}
-              />
-            </div>
-            <div>
-              {item.name}
-              {" ("}
-              {item.total_no}
-              {") "}
-            </div>
+          <div
+            key={item.name}
+            className={`radioButton ${isDisabled ? "disableButton" : ""}`}
+          >
+            <input
+              type="radio"
+              value={item.name}
+              checked={value === item.name}
+              onChange={event => onValueChange(event, index)}
+              disabled={isDisabled}
+            />
+            {`${item.name} (${item.total_no})`}
           </div>
         );
       })}
@@ -37,6 +44,9 @@ const RadioButton = ({ data }) => {
 };
 
 RadioButton.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired
+  options: PropTypes.arrayOf(Object).isRequired,
+  onSelected: PropTypes.func.isRequired,
+  desCard: PropTypes.objectOf(Number).isRequired
 };
+
 export default RadioButton;

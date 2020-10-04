@@ -4,6 +4,7 @@
   border: 1px solid cadetblue;
   z-index: 1000;
   position: sticky;
+  padding: 10px;
   flex-wrap: wrap;
   color: white;
   font-family: "Comic Sans MS", cursive, sans-serif;

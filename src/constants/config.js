@@ -21,7 +21,7 @@ export const FETCH_ACCESS_TOKEN = async () => {
   }
 };
 
-export const GET_DATA = async (url) => {
+export const FETCH_DATA = async (url) => {
   const config = {
     method: "get",
     url,
