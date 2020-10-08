@@ -8,6 +8,8 @@
   flex-wrap: wrap;
   color: white;
   font-family: "Comic Sans MS", cursive, sans-serif;
+  margin: -8px -8px 0px -8px;
+  /* border-radius: 40px; */
 }
 
 .navHeading {

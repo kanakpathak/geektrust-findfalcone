@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { PlanetsContext } from "../context/planetsContext";
+// import { PlanetsContext } from "../context/planetsContext";
+import { ApiContext } from "../context/apiContext";
 import "../styles/destination.css";
 
 const RadioButton = ({ options, onSelected, desCard }) => {
   const [value, setValue] = useState("");
-  const { planets } = useContext(PlanetsContext);
+  const { planets } = useContext(ApiContext);
   const { planetIndex, vehicleIndex } = desCard;
 
   const onValueChange = (event, index) => {
@@ -21,8 +22,9 @@ const RadioButton = ({ options, onSelected, desCard }) => {
     <div>
       {options.map((item, index) => {
         const isDisabled =
-          item.max_distance < planets[planetIndex].distance ||
-          item.total_no < 1;
+          (item.max_distance < planets[planetIndex].distance ||
+            item.total_no < 1) &&
+          item.name !== value;
         return (
           <div
             key={item.name}

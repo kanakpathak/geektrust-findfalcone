@@ -1,22 +1,28 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
 import DestinationCard from "./DestinationCard";
-import { PlanetsContext } from "../../context/planetsContext";
-import { VehiclesContext } from "../../context/vehiclesContext";
-import { DestinationContext } from "../../context/destinationContext";
+// import { PlanetsContext } from "../../context/planetsContext";
+// import { VehiclesContext } from "../../context/vehiclesContext";
+// import { DestinationContext } from "../../context/destinationContext";
+import { GameContext } from "../../context/gameContext";
+import { ApiContext } from "../../context/apiContext";
 import { FETCH_DATA } from "../../constants/config";
 import { planetsAPI, vehiclesAPI } from "../../constants/api";
 import "../../styles/destination.css";
+// import { ResultContext } from "../../context/ResultContext";
 
-const Destination = () => {
+
+
+const Destination = ({ enableButton, setEnableButton }) => {
   const [planetCheckList, setPlanetCheckList] = useState([]);
   const [options, setOptions] = useState([]);
-  const [time, setTime] = useState(0);
+  const { time, setTime } = useContext(GameContext);
 
-  const { planets, setPlanets } = useContext(PlanetsContext);
-  const { setVehicles } = useContext(VehiclesContext);
-  const { destination, setDestination } = useContext(DestinationContext);
+  const { planets, setPlanets } = useContext(ApiContext);
+  const { setVehicles } = useContext(ApiContext);
+  const { destination, setDestination } = useContext(GameContext);
 
   const getPlanetsData = async () => {
     const result = await FETCH_DATA(planetsAPI);
@@ -31,6 +37,7 @@ const Destination = () => {
   useEffect(() => {
     getPlanetsData();
     getVehiclesData();
+    setTime(0);
   }, []);
 
   const setInitialState = () => {
@@ -69,6 +76,15 @@ const Destination = () => {
     setTime(time + calculatedTime);
   };
 
+  useEffect(() => {
+    let isEnabled = true;
+
+    destination.map(item => {
+      if (item.vehicleIndex < 0) isEnabled = false;
+    });
+    if (enableButton !== isEnabled) setEnableButton(!enableButton);
+  }, [destination]);
+
   return (
     <div className="container">
       <div className="destination">
@@ -96,3 +112,8 @@ const Destination = () => {
 };
 
 export default Destination;
+
+Destination.propTypes = {
+  enableButton: PropTypes.bool.isRequired,
+  setEnableButton: PropTypes.func.isRequired
+};

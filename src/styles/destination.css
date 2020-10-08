@@ -22,6 +22,7 @@
 .radioButton {
   display: flex;
   padding: 2px;
+  /* color: whitesmoke; */
 }
 .disableButton {
   color: grey;

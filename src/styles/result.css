@@ -1,0 +1,12 @@
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Comic Sans MS", sans-serif;
+  text-align: center;
+  line-height: 28px;
+  font-size: 20px;
+  color: brown;
+  flex: 1;
+}

@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import RadioButton from "../../utils/radioButton";
-import { VehiclesContext } from "../../context/vehiclesContext";
-import { DestinationContext } from "../../context/destinationContext";
-import { PlanetsContext } from "../../context/planetsContext";
+// import { VehiclesContext } from "../../context/vehiclesContext";
+// import { DestinationContext } from "../../context/destinationContext";
+// import { PlanetsContext } from "../../context/planetsContext";
+import { GameContext } from "../../context/gameContext";
+import { ApiContext } from "../../context/apiContext";
+
 
 const DestinationCard = props => {
   const {
@@ -15,9 +18,9 @@ const DestinationCard = props => {
     calculateTime
   } = props;
 
-  const { vehicles, setVehicles } = useContext(VehiclesContext);
-  const { planets } = useContext(PlanetsContext);
-  const { destination, setDestination } = useContext(DestinationContext);
+  const { vehicles, setVehicles } = useContext(ApiContext);
+  const { planets } = useContext(ApiContext);
+  const { destination, setDestination } = useContext(GameContext);
 
   const { planetIndex, vehicleIndex } = destination[cardIndex];
   const des = JSON.parse(JSON.stringify(destination));
@@ -25,11 +28,10 @@ const DestinationCard = props => {
   const onPlanetSelected = event => {
     if (vehicleIndex !== -1) {
       const vehicleObj = vehicles[vehicleIndex];
-      const computeTime =
-        -1 * (planets[planetIndex].distance / vehicleObj.speed);
+      const computeTime = planets[planetIndex].distance / vehicleObj.speed;
       vehicleObj.total_no += 1;
       des[cardIndex].vehicleIndex = -1;
-      calculateTime(computeTime);
+      calculateTime(-computeTime);
       setVehicles([...vehicles]);
     }
 
@@ -62,7 +64,7 @@ const DestinationCard = props => {
   };
 
   return (
-    <div>
+    <div style={{ color: "black" }}>
       <Select options={options} onChange={onPlanetSelected} />
       {planets.length && planetIndex !== -1 && (
         <RadioButton
