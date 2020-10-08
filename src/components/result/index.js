@@ -1,19 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
-// import { PlanetsContext } from "../../context/planetsContext";
-// import { VehiclesContext } from "../../context/vehiclesContext";
-// import { DestinationContext } from "../../context/destinationContext";
+import DisplayResult from "./DisplayResult";
 import { ApiContext } from "../../context/apiContext";
 import { GameContext } from "../../context/gameContext";
 import { POST_DATA } from "../../constants/config";
 import { findingAPI } from "../../constants/api";
-// import { ResultContext } from "../../context/ResultContext";
-import DisplayResult from "./DisplayResult";
 
 const Result = () => {
-  const { planets } = useContext(ApiContext);
-  const { vehicles } = useContext(ApiContext);
+  const { planets, vehicles, token } = useContext(ApiContext);
   const { destination } = useContext(GameContext);
-  const { token } = useContext(GameContext);
   const [result, setResult] = useState("");
 
   const findFalcone = async () => {

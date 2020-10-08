@@ -3,42 +3,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import DestinationCard from "./DestinationCard";
-// import { PlanetsContext } from "../../context/planetsContext";
-// import { VehiclesContext } from "../../context/vehiclesContext";
-// import { DestinationContext } from "../../context/destinationContext";
 import { GameContext } from "../../context/gameContext";
 import { ApiContext } from "../../context/apiContext";
-import { FETCH_DATA } from "../../constants/config";
-import { planetsAPI, vehiclesAPI } from "../../constants/api";
 import "../../styles/destination.css";
-// import { ResultContext } from "../../context/ResultContext";
-
-
 
 const Destination = ({ enableButton, setEnableButton }) => {
   const [planetCheckList, setPlanetCheckList] = useState([]);
   const [options, setOptions] = useState([]);
+
+  const { destination, setDestination } = useContext(GameContext);
   const { time, setTime } = useContext(GameContext);
 
-  const { planets, setPlanets } = useContext(ApiContext);
-  const { setVehicles } = useContext(ApiContext);
-  const { destination, setDestination } = useContext(GameContext);
+  const { planets } = useContext(ApiContext);
 
-  const getPlanetsData = async () => {
-    const result = await FETCH_DATA(planetsAPI);
-    setPlanets(JSON.parse(result));
-  };
-
-  const getVehiclesData = async () => {
-    const result = await FETCH_DATA(vehiclesAPI);
-    setVehicles(JSON.parse(result));
-  };
-
-  useEffect(() => {
-    getPlanetsData();
-    getVehiclesData();
-    setTime(0);
-  }, []);
+  useEffect(() => setTime(0), []);
 
   const setInitialState = () => {
     const arr = new Array(planets.length).fill(false);
@@ -72,13 +50,8 @@ const Destination = ({ enableButton, setEnableButton }) => {
     setDropDownOptions();
   }, [planetCheckList]);
 
-  const calculateTime = calculatedTime => {
-    setTime(time + calculatedTime);
-  };
-
   useEffect(() => {
     let isEnabled = true;
-
     destination.map(item => {
       if (item.vehicleIndex < 0) isEnabled = false;
     });
@@ -98,13 +71,12 @@ const Destination = ({ enableButton, setEnableButton }) => {
                 selectPlanet={() => setPlanetCheckList([...planetCheckList])}
                 planetCheckList={planetCheckList}
                 cardIndex={index}
-                calculateTime={calculateTime}
               />
             </div>
           );
         })}
       </div>
-      <div>
+      <div style={{ margin: "0px 50px" }}>
         <h3>{`Time taken : ${time}`}</h3>
       </div>
     </div>

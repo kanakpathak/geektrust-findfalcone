@@ -1,23 +1,15 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Header from "./components/header";
-import Footer from "./components/footer";
-// import { PlanetsProvider } from "./context/planetsContext";
-// import { VehiclesProvider } from "./context/vehiclesContext";
-import "./styles/app.css";
-// import { DestinationProvider } from "./context/destinationContext";
-// import { ResultProvider } from "./context/ResultContext";
 import { ApiProvider } from "./context/apiContext";
 import { GameProvider } from "./context/gameContext";
+import Header from "./components/header";
+import Footer from "./components/footer";
 import Router from "./router";
+import "./styles/app.css";
 
 const App = () => {
   return (
     <div className="app">
-      {/* <PlanetsProvider>
-        <VehiclesProvider>
-          <DestinationProvider>
-            <ResultProvider> */}
       <ApiProvider>
         <GameProvider>
           <BrowserRouter>
@@ -27,10 +19,6 @@ const App = () => {
           </BrowserRouter>
         </GameProvider>
       </ApiProvider>
-      {/* </ResultProvider>
-          </DestinationProvider>
-        </VehiclesProvider>
-      </PlanetsProvider> */}
     </div>
   );
 };

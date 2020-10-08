@@ -1,12 +1,26 @@
 .result {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   font-family: "Comic Sans MS", sans-serif;
   text-align: center;
-  line-height: 28px;
-  font-size: 20px;
-  color: brown;
+  color: #2f2f2f;
   flex: 1;
+}
+
+.startButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  align-self: center;
+  border-radius: 8px;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 2px grey;
 }

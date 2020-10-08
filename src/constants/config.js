@@ -53,7 +53,6 @@ export const POST_DATA = async (url, data) => {
     const response = await axios(config);
     return JSON.parse(JSON.stringify(response.data));
   } catch (error) {
-    console.log("error", error.data);
     return {
       status: "error",
       error: error.response.data.error,

@@ -2,25 +2,15 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import RadioButton from "../../utils/radioButton";
-// import { VehiclesContext } from "../../context/vehiclesContext";
-// import { DestinationContext } from "../../context/destinationContext";
-// import { PlanetsContext } from "../../context/planetsContext";
 import { GameContext } from "../../context/gameContext";
 import { ApiContext } from "../../context/apiContext";
 
-
 const DestinationCard = props => {
-  const {
-    options,
-    selectPlanet,
-    planetCheckList,
-    cardIndex,
-    calculateTime
-  } = props;
+  const { options, selectPlanet, planetCheckList, cardIndex } = props;
 
-  const { vehicles, setVehicles } = useContext(ApiContext);
-  const { planets } = useContext(ApiContext);
+  const { planets, vehicles, setVehicles } = useContext(ApiContext);
   const { destination, setDestination } = useContext(GameContext);
+  const { time, setTime } = useContext(GameContext);
 
   const { planetIndex, vehicleIndex } = destination[cardIndex];
   const des = JSON.parse(JSON.stringify(destination));
@@ -31,7 +21,7 @@ const DestinationCard = props => {
       const computeTime = planets[planetIndex].distance / vehicleObj.speed;
       vehicleObj.total_no += 1;
       des[cardIndex].vehicleIndex = -1;
-      calculateTime(-computeTime);
+      setTime(time - computeTime);
       setVehicles([...vehicles]);
     }
 
@@ -60,11 +50,11 @@ const DestinationCard = props => {
 
     setVehicles([...vehicles]);
     setDestination([...des]);
-    calculateTime(computeTime);
+    setTime(time + computeTime);
   };
 
   return (
-    <div style={{ color: "black" }}>
+    <div>
       <Select options={options} onChange={onPlanetSelected} />
       {planets.length && planetIndex !== -1 && (
         <RadioButton
@@ -81,8 +71,7 @@ DestinationCard.propTypes = {
   options: PropTypes.arrayOf(Object).isRequired,
   selectPlanet: PropTypes.func.isRequired,
   planetCheckList: PropTypes.arrayOf(Number).isRequired,
-  cardIndex: PropTypes.number.isRequired,
-  calculateTime: PropTypes.func.isRequired
+  cardIndex: PropTypes.number.isRequired
 };
 
 export default DestinationCard;

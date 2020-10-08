@@ -10,6 +10,7 @@
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .destinationCard {
@@ -22,7 +23,6 @@
 .radioButton {
   display: flex;
   padding: 2px;
-  /* color: whitesmoke; */
 }
 .disableButton {
   color: grey;

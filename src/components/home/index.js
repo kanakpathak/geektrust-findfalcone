@@ -4,14 +4,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Destination from "../destination";
-// import { ResultContext } from "../../context/ResultContext";
 import { ApiContext } from "../../context/apiContext";
-import { FETCH_ACCESS_TOKEN } from "../../constants/config";
+import { FETCH_ACCESS_TOKEN, FETCH_DATA } from "../../constants/config";
+import { planetsAPI, vehiclesAPI } from "../../constants/api";
 import "../../styles/home.css";
 
 const Home = () => {
   const [isEnable, setIsEnable] = useState(false);
-  const { setToken } = useContext(ApiContext);
+  const { setToken, setPlanets, setVehicles } = useContext(ApiContext);
   const history = useHistory();
 
   const getAccessToken = async () => {
@@ -19,8 +19,20 @@ const Home = () => {
     if (!result.error) setToken(result.token);
   };
 
+  const getPlanetsData = async () => {
+    const result = await FETCH_DATA(planetsAPI);
+    setPlanets(JSON.parse(result));
+  };
+
+  const getVehiclesData = async () => {
+    const result = await FETCH_DATA(vehiclesAPI);
+    setVehicles(JSON.parse(result));
+  };
+
   useEffect(() => {
     getAccessToken();
+    getPlanetsData();
+    getVehiclesData();
   }, []);
 
   return (
@@ -28,9 +40,7 @@ const Home = () => {
       <div>
         <h3>Select planets you want to search in:</h3>
       </div>
-
       <Destination enableButton={isEnable} setEnableButton={setIsEnable} />
-
       <div
         className={`button ${isEnable ? "enableButton" : "disabledButton"}`}
         onClick={() => {
