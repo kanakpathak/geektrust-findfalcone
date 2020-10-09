@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../../styles/header.css";
+import "../styles/header.css";
 
 const Header = () => {
   const history = useHistory();

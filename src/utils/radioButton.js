@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-// import { PlanetsContext } from "../context/planetsContext";
 import { ApiContext } from "../context/apiContext";
 import "../styles/destination.css";
 

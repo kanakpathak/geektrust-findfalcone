@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { ApiProvider } from "./context/apiContext";
 import { GameProvider } from "./context/gameContext";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "./utils/header";
+import Footer from "./utils/footer";
 import Router from "./router";
 import "./styles/app.css";
 
