@@ -2,7 +2,7 @@ import axios from "axios";
 import { accessTokenAPI } from "./api";
 import "regenerator-runtime/runtime";
 
-export const FETCH_ACCESS_TOKEN = async () => {
+export const fetchAccessToken = async () => {
   const config = {
     method: "post",
     url: accessTokenAPI,
@@ -19,7 +19,7 @@ export const FETCH_ACCESS_TOKEN = async () => {
   }
 };
 
-export const FETCH_DATA = async url => {
+export const getData = async url => {
   const config = {
     method: "get",
     url,
@@ -31,14 +31,14 @@ export const FETCH_DATA = async url => {
   let response;
   try {
     response = await axios(config);
-    return JSON.stringify(response.data);
+    return JSON.parse(JSON.stringify(response.data));
   } catch (error) {
     response = { status: "error", error: "Can't getplanets/vehicles data " };
     return response;
   }
 };
 
-export const POST_DATA = async (url, data) => {
+export const postData = async (url, data) => {
   const body = JSON.stringify(data);
   const config = {
     method: "post",

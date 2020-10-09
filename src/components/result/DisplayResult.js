@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-nested-ternary */
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -42,13 +41,12 @@ const DisplayResult = ({ result }) => {
   const history = useHistory();
   return (
     <div className="result">
-      {result.status === "error" ? (
-        <ErrorMessage error={result.error} />
-      ) : result.status === "false" ? (
-        <FailureMessage />
-      ) : (
+      {result.status === "error" && <ErrorMessage error={result.error} />}
+      {result.status === "false" && <FailureMessage />}
+      {result.status === "success" && (
         <SuccessMessage time={time} planet={result.planet_name} />
       )}
+
       <div className="startButton" onClick={() => history.push("/")}>
         Start Again!
       </div>

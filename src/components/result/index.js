@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import DisplayResult from "./DisplayResult";
 import { ApiContext } from "../../context/apiContext";
 import { GameContext } from "../../context/gameContext";
-import { POST_DATA } from "../../constants/config";
+import { postData } from "../../constants/config";
 import { findingAPI } from "../../constants/api";
 
 const Result = () => {
@@ -24,7 +24,7 @@ const Result = () => {
       planet_names: planetsNames,
       vehicle_names: vehiclesNames
     };
-    const response = await POST_DATA(findingAPI, data);
+    const response = await postData(findingAPI, data);
     setResult(response);
   };
 

@@ -56,7 +56,7 @@ const DestinationCard = props => {
   return (
     <div>
       <Select options={options} onChange={onPlanetSelected} />
-      {planets.length && planetIndex !== -1 && (
+      {planetIndex !== -1 && (
         <RadioButton
           options={vehicles}
           onSelected={onVehicleSelected}

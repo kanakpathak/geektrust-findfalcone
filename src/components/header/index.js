@@ -27,11 +27,6 @@ const Header = () => {
         <>|</>
         <div>
           <a
-            style={{
-              textDecoration: "none",
-              color: "white",
-              paddingLeft: "5px"
-            }}
             target="_blank"
             rel="noreferrer"
             href="https://www.geektrust.in/coding-problem"

@@ -5,7 +5,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Destination from "../destination";
 import { ApiContext } from "../../context/apiContext";
-import { FETCH_ACCESS_TOKEN, FETCH_DATA } from "../../constants/config";
+import { fetchAccessToken, getData } from "../../constants/config";
 import { planetsAPI, vehiclesAPI } from "../../constants/api";
 import "../../styles/home.css";
 
@@ -15,18 +15,18 @@ const Home = () => {
   const history = useHistory();
 
   const getAccessToken = async () => {
-    const result = await FETCH_ACCESS_TOKEN();
+    const result = await fetchAccessToken();
     if (!result.error) setToken(result.token);
   };
 
   const getPlanetsData = async () => {
-    const result = await FETCH_DATA(planetsAPI);
-    setPlanets(JSON.parse(result));
+    const result = await getData(planetsAPI);
+    setPlanets(result);
   };
 
   const getVehiclesData = async () => {
-    const result = await FETCH_DATA(vehiclesAPI);
-    setVehicles(JSON.parse(result));
+    const result = await getData(vehiclesAPI);
+    setVehicles(result);
   };
 
   useEffect(() => {

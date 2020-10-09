@@ -58,6 +58,8 @@ const Destination = ({ enableButton, setEnableButton }) => {
     if (enableButton !== isEnabled) setEnableButton(!enableButton);
   }, [destination]);
 
+  if (!planetCheckList.length) return null;
+
   return (
     <div className="container">
       <div className="destination">

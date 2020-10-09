@@ -8,6 +8,7 @@ import Router from "./router";
 import "./styles/app.css";
 
 const App = () => {
+  /* Router represents routed components */
   return (
     <div className="app">
       <ApiProvider>
