@@ -3,10 +3,10 @@
 /* eslint-disable array-callback-return */
 import React, {  useEffect, useContext, useState } from "react";
 import { GameContext } from "../../context/gameContext";
-import "../../styles/destination.css";
 import DisplayPlanet from "./DisplayPlanet";
 import DisplayVehicle from "./DisplayVehicle";
 import { ApiContext } from "../../context/apiContext";
+import "../../styles/destination.css";
 
 const Destination = () => {
   const { planets } = useContext(ApiContext);  
