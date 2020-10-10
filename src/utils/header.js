@@ -8,8 +8,8 @@ const Header = () => {
   const history = useHistory();
 
   const onReset = () => {
-    (window.location.pathname !== "/"
-      ? history.push("/result")
+    (window.location.pathname === "/result"
+      ? history.push("/")
       : window.location.reload())();
   };
   return (
