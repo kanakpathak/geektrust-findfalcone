@@ -10,7 +10,7 @@ const SuccessMessage = ({ time, planet }) => {
   return (
     <div>
       <h1>
-        Success! Congratulations on Finding Falcone. King Shah is mighty
+        Success! Congratulations on Finding Falcone. King Shan is mighty
         pleased.
       </h1>
       <h2>{`Time Taken: ${time}`}</h2>
@@ -22,7 +22,7 @@ const SuccessMessage = ({ time, planet }) => {
 const FailureMessage = () => {
   return (
     <div>
-      <h1>Failed ! Be ready to face the wrath of King Shah mighty</h1>
+      <h1>Failed ! Be ready to face the wrath of King Shan mighty</h1>
     </div>
   );
 };
