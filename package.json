@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --env.production --env.NODE_ENV=production",
+    "start": "webpack-dev-server --open --env.NODE_ENV=development",
     "deploy": "gh-pages -d dist",
     "clean": "gh-pages-clean"
   },
