@@ -13,7 +13,7 @@ const App = () => {
     <div className="app">
       <ApiProvider>
         <GameProvider>
-          <BrowserRouter basename={process.env.BASE_URL}>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Header />
             <Router />
             <Footer />
