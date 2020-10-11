@@ -1,6 +1,8 @@
 const path = require("path");
-
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+const BASE_URL = "/geektrust-findfalcone";
 
 module.exports = {
   module: {
@@ -38,6 +40,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
+    }),
+    new webpack.DefinePlugin({
+      "process.env.BASE_URL": JSON.stringify(BASE_URL)
     })
   ]
 };
