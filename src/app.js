@@ -13,7 +13,7 @@ const App = () => {
     <div className="app">
       <ApiProvider>
         <GameProvider>
-          <BrowserRouter basename="/geektrust-findfalcone">
+          <BrowserRouter basename={process.env.BASE_URL}>
             <Header />
             <Router />
             <Footer />
