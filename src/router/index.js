@@ -8,6 +8,11 @@ const Router = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/result" component={Result} />
+      <Route
+        component={() => (
+          <div style={{ font: "bold", fontSize: "28px" }}>404 Not found </div>
+        )}
+      />
     </Switch>
   );
 };

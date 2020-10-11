@@ -4,7 +4,7 @@ import { ApiProvider } from "./context/apiContext";
 import { GameProvider } from "./context/gameContext";
 import Header from "./utils/header";
 import Footer from "./utils/footer";
-import RouteApp from "./router";
+import Router from "./router";
 import "./styles/app.css";
 
 const App = () => {
@@ -13,9 +13,9 @@ const App = () => {
     <div className="app">
       <ApiProvider>
         <GameProvider>
-          <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <BrowserRouter basename="/geektrust-findfalcone">
             <Header />
-            <RouteApp />
+            <Router />
             <Footer />
           </BrowserRouter>
         </GameProvider>
