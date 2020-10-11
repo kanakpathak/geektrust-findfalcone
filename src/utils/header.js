@@ -8,9 +8,9 @@ const Header = () => {
   const history = useHistory();
 
   const onReset = () => {
-    (window.location.pathname === "/result"
+    return window.location.pathname.includes("/result")
       ? history.push("/")
-      : window.location.reload())();
+      : window.location.reload();
   };
   return (
     <div className="header">
