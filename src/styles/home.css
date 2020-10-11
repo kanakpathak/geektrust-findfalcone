@@ -20,18 +20,16 @@
   text-decoration: none;
   align-self: center;
   border-radius: 8px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .enableButton {
-  border: 1px solid darkgray;
-  background-color: darkgray;
+  background-color: #0049b7;
   color: white;
   cursor: pointer;
-  box-shadow: 2px 2px 2px 2px grey;
 }
 
 .disabledButton {
-  border: 1px solid gainsboro;
   background-color: gainsboro;
   color: darkgray;
 }
